@@ -6,14 +6,8 @@ import 'request_information.dart';
 void main() => runApp(
     MaterialApp(
 
-        home :  mainInterface(),
-routes: {
+        home :  drawer(),
 
-  '/mainInterface': (context) => mainInterface(),
-
-  '/home': (context) => home(),
-    'pet_profile' :(context) => pet_profile(), '/request_information': (context) => request_information(),
-},
 )
     );
 

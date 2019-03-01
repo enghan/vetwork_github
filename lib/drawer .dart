@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-class mainInterface extends StatelessWidget{
+import 'home.dart';
+class drawer extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -26,7 +27,8 @@ class mainInterface extends StatelessWidget{
                 title: Text('Home'),
 
                 onTap: () {
-                  Navigator.pushNamed(context, '/home');
+                  Navigator.push(context, new MaterialPageRoute(
+                      builder: (context) => new home()));
 
                 },
               ),
@@ -70,6 +72,7 @@ class mainInterface extends StatelessWidget{
                   // ...
                 },
               ),
+              new Divider(),
               ListTile(
                 trailing: Icon(Icons.list),
                 title: Text('Terms and Condition'),
