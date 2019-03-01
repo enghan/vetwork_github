@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
-
+import 'UI/folder_style/AppStyles.dart';
+import 'service.dart';
+import 'UI/folder_style/ui_constant.dart';
 
 class home extends StatefulWidget {
   @override
   _State createState() => new _State();
 }
 
+List<Service> item_service = [
+  Service(name: 'checkup', Price: 10.0),
+  Service(name: 'Vaccine', Price: 30.0),
+  Service(name: 'X/ray', Price: 30.0),
+  Service(name: 'Deworming', Price: 30.0),
+];
 bool selected = false;
+
 
 class _State extends State<home> {
   MediaQuery querydata;
@@ -23,71 +32,111 @@ class _State extends State<home> {
 //    buildServiceType();
 //    buildServices();
 //  }
+  Widget buildCard(String image, String title) {
+    var card = Card(
+        child: new InkWell(
+          onTap: (){print("tapped");},
+      child: Padding(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            CircleAvatar(
+              radius: 20.0,
+              backgroundImage: AssetImage("$image"),
+            ),
+            Padding(
+                padding: EdgeInsets.only(top: 10.0),
+                child: Text(
+                  title,
+                  style: textStyleH3,
+                ))
+          ],
+        ),
+        padding: EdgeInsets.all(10.0),
+      ),
+        ) );
+    return SizedBox(width: 100.0, height: 100.0, child: card);
+  }
+
+  Widget buildPidType() {
+    var widget = Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              'Chooes Species',
+              style: textStyleH2,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                buildCard("assets/dog.jpg", 'Dog'),
+                SizedBox(
+                  width: 20.0,
+                ),
+                buildCard("assets/dog.jpg", 'Cat'),
+              ],
+            )
+          ],
+        ));
+
+    return widget;
+  }
 
   Widget buildWelcomeText() {
     return Container(
+        width: 90.0, //px=177.5
+        height: 30.0, //px=50
         child: Column(children: <Widget>[
           Text(
             'Welcom',
-            style: TextStyle(fontSize: 34.0, fontWeight: FontWeight.bold),
+            style: textStyleH2,
           ),
         ]));
   }
 
-  Widget buildPidType(String name, String image) {
-    return Container(
-        child: Column(children: <Widget>[
-          new GestureDetector(
-            onTap: () {},
-            child: Padding(
-              padding: const EdgeInsets.only(right: 5.0, top: 3.0),
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                child: new Container(
-                  child: new Column(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 20.0, right: 20.0, bottom: 8.0, top: 10.0),
-                        child: CircleAvatar(
-                          radius: 20.0,
-                          backgroundImage: AssetImage("$image"),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(bottom: 5.0),
-                        child: Text(
-                          "$name",
-                          style: TextStyle(
-                              fontSize: 14.0, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          )
-        ]));
-  }
-
   Widget buildServiceType() {
-    return Container(
-        child: Column(children: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(top: 10.0, left: 10.0),
-            child: Text(
-              "what do you need to do ?",
-              style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),
+    var widget = Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              'What does your pet need today',
+              style: textStyleH2,
             ),
-          )
-        ]));
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                buildCard("assets/dog.jpg", 'Dog'),
+                SizedBox(
+                  width: 20.0,
+                ),
+                buildCard("assets/dog.jpg", 'Cat'),
+              ],
+            )
+          ],
+        ));
+    return widget;
   }
 
-  buildServices() {}
-  /////////////////////////////////////////////
+  Widget buildServices() {
+    for (int i = 0; i < item_service.length; i++) {
+      var widget = Container(
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+
+                Card(
+                  child: Text('name${item_service[i].name}'),
+                ),
+              ]));
+      return widget;
+    }
+  }
+
   Widget service_Card(
       String service_name,
       ) {
@@ -119,181 +168,18 @@ class _State extends State<home> {
   }
 
   Widget build(BuildContext context) {
-    final querydata = MediaQuery.of(context);
-    double devicePixelRatio = querydata.devicePixelRatio;
-    final maxWidth = MediaQuery.of(context).size.width;
-    final maxHeight = MediaQuery.of(context).size.height;
-    print("maxWidth = $maxWidth / maxHeight = $maxHeight");
+
+    for (int i = 0; i < item_service.length; i++) {
+      print('name :${item_service[i].name}');
+    }
     return Scaffold(
         appBar: AppBar(backgroundColor: Colors.amber),
         backgroundColor: Colors.white70,
-        body: Column(children: <Widget>[
-          Padding(
-              padding: EdgeInsets.only(
-                left: 24.0,
-              ),
-              child: Row(children: <Widget>[
-                buildWelcomeText(),
-              ])),
-          Row(
-            children: <Widget>[
-              buildPidType("Dog", "assets/dog.jpg"),
-              buildPidType("Cat", "assets/dog.jpg"),
-            ],
-          ),
-          Row(
-            children: <Widget>[buildServiceType()],
-          ),
-          Row(
-            children: <Widget>[
-              buildPidType("HealthCare", "assets/dog.jpg"),
-              buildPidType("Grooming", "assets/dog.jpg"),
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 5.0, right: 5.0, left: 10.0),
-            child: Row(
-              children: <Widget>[
-                service_Card("checkup"),
-                service_Card("Vaccine"),
-              ],
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 5.0, right: 5.0, left: 10.0),
-            child: Row(children: <Widget>[
-              service_Card("Deworming"),
-              service_Card("Anal sac evacuation"),
-            ]),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 5.0, right: 5.0, left: 10.0),
-            child: Row(
-              children: <Widget>[
-                service_Card("Insecticiding"),
-                service_Card("Veterinary drug shot"),
-              ],
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 13.0, bottom: 7.0, left: 10.0),
-            child: Row(
-              children: <Widget>[
-                service_Card("Human drug shot"),
-                service_Card("X-ray / Sonar"),
-              ],
-            ),
-          ),
-          Padding(
-              padding: EdgeInsets.only(top: 13.0, bottom: 7.0, left: 10.0),
-              child: Row(
-                children: <Widget>[
-                  new GestureDetector(
-                    onTap: () {},
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      child: new Container(
-                        child: new Row(
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: Text(
-                                "Other",
-                                style: TextStyle(fontSize: 14.0),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 4.0),
-                              child: Icon(
-                                Icons.add,
-                                size: 16.0,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              )),
-          Row(
-            children: <Widget>[
-              new GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, '/pet_profile');
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 10.0, right: 5.0),
-                  child: Card(
-                    color: Colors.black12,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(60.0),
-                    ),
-                    child: new Container(
-                      child: new Column(
-                        children: <Widget>[
-                          Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Icon(
-                                Icons.add,
-                                size: 20.0,
-                                color: Colors.white,
-                              )),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              new GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, '/pet_profile');
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 10.0),
-                  child: Text(
-                    "Add this pet for future use",
-                    style:
-                    TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Padding(
-                padding:
-                const EdgeInsets.only(top: 10.0, left: 30.0, right: 30.0),
-                child: SizedBox(
-                  width: 90.0,
-                  height: 60.0,
-                  child: RaisedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/request_information');
-                    },
-                    padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-                    color: Colors.white,
-                    child: Text(
-                      'Next',
-                      style: TextStyle(
-                        fontSize: 30.0,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Container(
-            padding: EdgeInsets.only(left: 10.0, top: 5.0),
-            alignment: Alignment.bottomCenter,
-            child: Text("ESTIMETD PRICE:800_1000"),
-          )
-        ]));
-  }
-}
+        body: Padding(
+            padding: EdgeInsets.only(left: page_padding, top: top_padding),
+            child: Column(children: <Widget>[
+              buildWelcomeText(),
+              buildPidType(),
+              buildServiceType(),
+              buildServices(),
+            ])));}}
