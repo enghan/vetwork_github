@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'drawer.dart';
 import 'home.dart';
-import 'drawer .dart';
+
 import 'pet_profile.dart';
 import 'request_information.dart';
-void main() => runApp(
-    MaterialApp(
+import 'add_address.dart';
 
-        home :  drawer(),
-
-)
-    );
-
-
+void main() => runApp(MaterialApp(
+      home: drawer(),
+    routes : {
+  '/drawer': (context) => drawer(),
+  '/home': (context) => home(),
+  '/pet_profile': (context) => pet_profile(),
+  '/request_information': (context) => request_information(),
+  '/add_address' : (context) => add_address(),
+},
+    ));

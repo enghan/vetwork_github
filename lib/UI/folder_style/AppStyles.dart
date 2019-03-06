@@ -3,17 +3,21 @@ import 'colors.dart';
 
 
 TextStyle welcometextStyle = const TextStyle(
-    color: clrBlack, fontSize:40.0, fontWeight: FontWeight.bold);
+    color: clrBlack, fontSize:30.0, fontWeight: FontWeight.bold);
 
 TextStyle textStyleH2 = const TextStyle(
-    color: clrBlack, fontSize:20.0, fontWeight: FontWeight.bold);
+    color: clrBlack, fontSize:17.0, fontWeight: FontWeight.bold);
 
 TextStyle textStyleH3 = const TextStyle(
     color: clrBlack, fontSize:15.0, fontWeight: FontWeight.bold);
 
 TextStyle textStyleH4 = const TextStyle(
-    color: clrLightGray, fontSize:15.0, fontWeight: FontWeight.bold);
+    color: clrLightGray, fontSize:12.0, fontWeight: FontWeight.bold);
+TextStyle textStyleH5 = const TextStyle(
+    color: clrLightGray, fontSize:18.0, );
 
+TextStyle textStyleH4a = const TextStyle(
+    color: clrBlack, fontSize:12.0, fontWeight: FontWeight.bold);
 
 TextStyle btnTextStyle = const TextStyle(
     color: clrBlack, fontSize:15.0, fontWeight: FontWeight.bold);

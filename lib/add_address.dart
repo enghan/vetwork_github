@@ -101,7 +101,7 @@ class _State extends State<add_address > {
                       SizedBox (width: 5.0,) ,
                       InkWell(onTap: (){
 
-                      },
+                       },
                         child:  Text('Register' , style: TextStyle(color: Colors.blue ,
                             fontFamily: 'Montserrat' ,
                             fontWeight: FontWeight.bold ,
