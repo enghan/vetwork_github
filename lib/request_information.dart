@@ -280,8 +280,8 @@ class request_information extends StatelessWidget {
       // appBar: AppBar(backgroundColor: Colors.amber),
         body: ListView(
             children: <Widget>[
-//          build_request_informaiton(),
-//          build_cardaddress(),
+          build_request_informaiton(),
+          build_cardaddress(),
               test(),
             ])
     );
