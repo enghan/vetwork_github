@@ -1,35 +1,30 @@
 import 'package:flutter/material.dart';
 import 'home.dart';
-class drawer extends StatelessWidget{
+
+class drawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
 
-      // TODO: implement build
+        // TODO: implement build
         appBar: new AppBar(),
-        drawer:  Drawer(
-          child:  ListView(
+        drawer: Drawer(
+          child: ListView(
             padding: EdgeInsets.zero,
             children: <Widget>[
               DrawerHeader(
-
-                child: Image.asset( "assete/dogs.png"),
+                child: Image.asset("assete/dogs.png"),
                 decoration: BoxDecoration(
                   color: Colors.blue,
-
                 ),
               ),
               ListTile(
-
-
                 trailing: Icon(Icons.home),
                 title: Text('Home'),
-
                 onTap: () {
-                  Navigator.push(context, new MaterialPageRoute(
-                      builder: (context) => new home()));
-
+                  Navigator.push(context,
+                      new MaterialPageRoute(builder: (context) => new home()));
                 },
               ),
               ListTile(
@@ -99,11 +94,6 @@ class drawer extends StatelessWidget{
               ),
             ],
           ),
-
-        )
-
-
-    );
+        ));
   }
-
 }

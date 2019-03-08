@@ -12,3 +12,6 @@ const petservice_width=260.0;
 const next_button_height=50.0;
 const next_button_width=200.0;
 const bottom_padding=5.0;
+const width_crad_cancelandback= 100.0;
+const height_crad_cancelandback= 30.0;
+const heiht_next_button=40.0;
